@@ -1,0 +1,23 @@
+{
+  "name": "hexo-analysis",
+  "version": "0.0.1",
+  "description": "hexo blog 分析插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-techs/hexo-analysis.git"
+  },
+  "keywords": [
+    "hexo",
+    "analysis"
+  ],
+  "author": "alex",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alex-techs/hexo-analysis/issues"
+  },
+  "homepage": "https://github.com/alex-techs/hexo-analysis#readme"
+}
