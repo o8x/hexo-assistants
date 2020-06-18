@@ -7,13 +7,15 @@ function parseWord(contents)
 // 过滤出单词
 function usenFilter(content)
 {
-	return content.replace(/\p{Unified_Ideograph}/ug , '').match(/[\w\-]+/g)
+	const result = content.replace(/\p{Unified_Ideograph}/ug , '').match(/[\w\-]+/g)
+	return result ? result : []
 }
 
 // 过滤出汉字
 function hansFilter(content)
 {
-	return content.match(/\p{Unified_Ideograph}/ug , '')
+	const result = content.match(/\p{Unified_Ideograph}/ug , '')
+	return result ? result : []
 }
 
 // 分析阅读时间
