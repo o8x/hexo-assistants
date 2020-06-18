@@ -16,6 +16,46 @@ function hansFilter(content)
 	return content.match(/\p{Unified_Ideograph}/ug , '')
 }
 
+// 分析阅读时间
+function timeStatistics(content)
+{
+	content        = parseWord(content)
+	let wordscount = usenFilter(content).length + hansFilter(content).length
+	let time       = wordscount / 350
+	let similars   = {
+		1: '品一杯茶' ,
+		2: '在标准操场跑一圈' ,
+		3: '喝一杯咖啡' ,
+		4: '一个法式湿吻' ,
+		5: '听一首歌' ,
+		10: '读5-6页书' ,
+		15: '做一次爱' ,
+		20: '一次午餐' ,
+		30: '跑5公里' ,
+		45: '上一节课' ,
+		60: '一个香甜的午觉' ,
+	}
+
+	if (time < 1) {
+		time = 1
+	}
+
+	let segment = String(time).split('.')
+	let similar = `${segment[0]}分钟`
+	if (similars[segment[0]]) {
+		similar = similars[segment[0]] + '的时间'
+	} else {
+		if (segment[1] && segment[1] >= 0.5) {
+			similar = `${segment[0]}分半钟`
+		}
+	}
+
+	return {
+		wordscount ,
+		similar,
+	}
+}
+
 // 生成QQ分享链接
 hexo.extend.helper.register('qqLink' , post => {
 	const queryString = {
@@ -37,38 +77,10 @@ hexo.extend.helper.register('weiboLink' , () => {
 })
 
 // 分析阅读时间
-hexo.extend.helper.register('timeStatistics' , content => {
+hexo.extend.helper.register('timeStatistics' , timeStatistics)
 
-	content    = parseWord(content)
-	let length = usenFilter(content).length + hansFilter(content).length
-	let time   = length / 350
-	let map    = {
-		1: '品一杯茶' ,
-		2: '在标准操场跑一圈' ,
-		3: '喝一杯咖啡' ,
-		4: '一个法式湿吻' ,
-		5: '听一首歌' ,
-		10: '读5-6页书' ,
-		15: '做一次爱' ,
-		20: '一次午餐' ,
-		30: '跑5公里' ,
-		45: '上一节课' ,
-		60: '一个香甜的午觉' ,
-	}
-
-	if (time < 1) {
-		time = 1
-	}
-
-	let segment = String(time).split('.')
-	let result  = `${segment[0]}分钟`
-	if (segment[1] && segment[1] >= 0.5) {
-		result = `${segment[0]}分半钟`
-	}
-
-	if (map[segment[0]]) {
-		result = map[segment[0]] + '的时间'
-	}
-
-	return ` 全文共${length}个字，阅读大约需要${result}`
+// 渲染阅读时间
+hexo.extend.helper.register('renderTimeStatistics' , content => {
+	const {wordscount , similar}= timeStatistics(content)
+	return ` 全文共${wordscount}个字，阅读大约需要${similar}`
 })
