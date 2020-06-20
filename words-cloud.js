@@ -32,9 +32,9 @@ const cloud = {
 		const data = JSON.stringify(cloud.parse(posts))
 
 		return `
-<script src="http://static.popodv.com/dvlibs/d3/d3.v3.min.js"></script>
-<script src="http://static.popodv.com/dvlibs/d3/d3.layout.cloud.js"></script>
-<script src="http://static.popodv.com/dvlibs/tool/jquery.min.js"></script>
+<script src="https://println.org/js/d3.v3.min.js"></script>
+<script src="https://println.org/js/d3.layout.cloud.js"></script>
+<script src="https://println.org/js/jquery.js"></script>
 <style>
 	html , body , #container {
 		width:100%;
