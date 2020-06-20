@@ -1,5 +1,62 @@
-const { parseWord , timeStatistics } = require("./utils.js");
-require('./analysis')(hexo)
+// 过滤掉标签
+function parseWord(contents)
+{
+	return contents.replace(/<[^>]+>/g , '').replace(/\n/g , '')
+}
+
+// 过滤出单词
+function usenFilter(content)
+{
+	const result = content.replace(/\p{Unified_Ideograph}/ug , '').match(/[\w\-]+/g)
+	return result ? result : []
+}
+
+// 过滤出汉字
+function hansFilter(content)
+{
+	const result = content.match(/\p{Unified_Ideograph}/ug , '')
+	return result ? result : []
+}
+
+// 分析阅读时间
+function timeStatistics(content)
+{
+	content        = parseWord(content)
+	let wordscount = usenFilter(content).length + hansFilter(content).length
+	let time       = wordscount / 350
+	let similars   = {
+		1: '品一杯茶' ,
+		2: '在标准操场跑一圈' ,
+		3: '喝一杯咖啡' ,
+		4: '一个法式湿吻' ,
+		5: '听一首歌' ,
+		10: '读5-6页书' ,
+		15: '做一次爱' ,
+		20: '一次午餐' ,
+		30: '跑5公里' ,
+		45: '上一节课' ,
+		60: '一个香甜的午觉' ,
+	}
+
+	if (time < 1) {
+		time = 1
+	}
+
+	let segment = String(time).split('.')
+	let similar = `${segment[0]}分钟`
+	if (similars[segment[0]]) {
+		similar = similars[segment[0]] + '的时间'
+	} else {
+		if (segment[1] && segment[1] >= 0.5) {
+			similar = `${segment[0]}分半钟`
+		}
+	}
+
+	return {
+		wordscount ,
+		similar,
+	}
+}
 
 // 生成QQ分享链接
 hexo.extend.helper.register('qqLink' , post => {
