@@ -1,4 +1,5 @@
 const {wordcount} = require('./utils.js')
+const cloud       = require('./words-cloud')
 
 module.exports = hexo => {
 	hexo.extend.helper.register('analysis' , (posts) => {
@@ -9,6 +10,8 @@ module.exports = hexo => {
 			wordsCount ,
 		}
 	})
+
+	hexo.extend.helper.register('renderCloud' , cloud.render)
 
 	hexo.extend.generator.register('analysis' , ({posts}) => {
 		return {
