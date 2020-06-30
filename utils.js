@@ -8,6 +8,7 @@ const utils = {
 
 	// 过滤出单词
 	usenFilter(content) {
+		// 有一些bug，这里会把一整行英语认为是一个单词，造成统计数量过少的问题
 		const result = content.replace(/\p{Unified_Ideograph}/ug, '').match(/[\w\-]+/g)
 		return result ? result : []
 	},
