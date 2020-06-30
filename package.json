@@ -1,6 +1,6 @@
 {
   "name": "hexo-analysis",
-  "version": "1.1.5",
+  "version": "1.2.3",
   "description": "hexo 内容分析插件",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/alex-techs/hexo-analysis/issues"
   },
-  "homepage": "https://println.org/url/NjE="
+  "homepage": "https://println.org/url/NjE=",
+  "dependencies": {
+    "striptags": "^3.1.1"
+  }
 }

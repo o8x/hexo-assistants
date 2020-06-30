@@ -1,9 +1,10 @@
 const similars = require('./similars')
+const striptags = require('striptags');
 
 const utils = {
 	// 过滤掉标签解析出文章的文字
 	parseWord(contents) {
-		return contents.replace(/<[^>]+>/g, '').replace(/\n/g, '')
+		return striptags(contents)
 	},
 
 	// 过滤出单词
@@ -28,7 +29,7 @@ const utils = {
 	// 分析阅读时间
 	timeStatistics(content) {
 		let wordscount = utils.wordcount(content)
-		let time = wordscount / 350
+		let time = wordscount / 300
 
 		if (time < 1) {
 			time = 0
