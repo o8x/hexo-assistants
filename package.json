@@ -1,6 +1,6 @@
 {
-  "name": "hexo-analysis",
-  "version": "1.2.3",
+  "name": "hexo-assistants",
+  "version": "1.0.0",
   "description": "hexo 内容分析插件",
   "main": "index.js",
   "scripts": {
