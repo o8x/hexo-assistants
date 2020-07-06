@@ -12,12 +12,4 @@ module.exports = hexo => {
 	})
 
 	hexo.extend.helper.register('renderCloud' , cloud.render)
-
-	hexo.extend.generator.register('analysis' , ({posts}) => {
-		return {
-			path: 'analysis/index.html' ,
-			data: posts ,
-			layout: ['analysis'] ,
-		}
-	})
 }

@@ -1,6 +1,7 @@
 const { parseWord , timeStatistics } = require("./utils.js");
 require('./analysis')(hexo)
 require('./articles')(hexo)
+require('./pages')(hexo)
 
 // 生成QQ分享链接
 hexo.extend.helper.register('qqLink' , post => {
