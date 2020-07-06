@@ -1,5 +1,5 @@
 {
-  "name": "hexo-analysis",
+  "name": "hexo-assistant",
   "version": "1.2.3",
   "description": "hexo 内容分析插件",
   "main": "index.js",
