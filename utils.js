@@ -39,7 +39,7 @@ const utils = {
 	// 分析阅读时间
 	timeStatistics(content) {
 		let wordscount = utils.wordcount(content)
-		let time = wordscount / 300
+		let time = wordscount / 200
 
 		if (time < 1) {
 			time = 0
